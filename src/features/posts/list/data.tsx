@@ -1,10 +1,11 @@
+import { IconEye } from "@tabler/icons-react";
+import type { ColumnDef } from "@tanstack/react-table";
+
 import { TtTableCell } from "@/components/datatable/cell";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { formatToLocalDateTime } from "@/lib/datetime";
 import type { Post } from "@/types/post";
-import { IconEye } from "@tabler/icons-react";
-import type { ColumnDef } from "@tanstack/react-table";
 
 export const createPostsTableColumns = (): ColumnDef<Post>[] => [
     {

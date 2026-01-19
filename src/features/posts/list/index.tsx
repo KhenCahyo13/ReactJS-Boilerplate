@@ -1,7 +1,8 @@
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import PostsView from "./view";
-import { dummyPosts } from "./dummy";
+
 import { createPostsTableColumns } from "./data";
+import { dummyPosts } from "./dummy";
+import PostsView from "./view";
 
 const Posts = () => {
     // eslint-disable-next-line react-hooks/incompatible-library

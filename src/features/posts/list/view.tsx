@@ -1,6 +1,8 @@
+import { type FC,memo } from "react";
+
 import ContentLayout from "@/components/layouts/content-layout";
+
 import PostsDataOverview from "./components/data-overview";
-import { memo, type FC } from "react";
 import PostsDataTable from "./components/datatable";
 import type { PostsViewProps } from "./types";
 

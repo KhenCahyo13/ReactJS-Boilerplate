@@ -1,5 +1,6 @@
-import type { Post } from "@/types/post";
 import type { Table } from "@tanstack/react-table";
+
+import type { Post } from "@/types/post";
 
 export interface PostsDataTableProps {
     table: Table<Post>;

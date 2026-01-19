@@ -1,14 +1,16 @@
-import { memo, type FC } from "react";
-import type { PostsDataTableProps } from "../types";
-import { DataTable } from "@/components/datatable/wrapper";
+import { type FC,memo } from "react";
+
+import { DataTableBody } from "@/components/datatable/body";
 import { DataTableHeader } from "@/components/datatable/header";
+import { DataTablePagination } from "@/components/datatable/pagination";
+import { DataTable } from "@/components/datatable/wrapper";
+import { Button } from "@/components/ui/button";
+import { DialogFooter } from "@/components/ui/dialog";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
 import { dummyCategories, postsPagination } from "../dummy";
-import { DialogFooter } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { DataTableBody } from "@/components/datatable/body";
-import { DataTablePagination } from "@/components/datatable/pagination";
+import type { PostsDataTableProps } from "../types";
 
 const PostsDataTable: FC<PostsDataTableProps> = ({
     table,
