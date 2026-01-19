@@ -8,49 +8,70 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
+import { createFileRoute } from '@tanstack/react-router'
+
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as authenticatedRouteRouteImport } from './routes/(authenticated)/route'
-import { Route as authenticatedIndexRouteImport } from './routes/(authenticated)/index'
-import { Route as authenticatedPostsIndexRouteImport } from './routes/(authenticated)/posts/index'
-import { Route as unauthenticatedauthLoginRouteImport } from './routes/(unauthenticated)/(auth)/login'
+
+const authenticatedIndexLazyRouteImport = createFileRoute('/(authenticated)/')()
+const authenticatedPostsIndexLazyRouteImport = createFileRoute(
+  '/(authenticated)/posts/',
+)()
+const unauthenticatedauthLoginLazyRouteImport = createFileRoute(
+  '/(unauthenticated)/(auth)/login',
+)()
 
 const authenticatedRouteRoute = authenticatedRouteRouteImport.update({
   id: '/(authenticated)',
   getParentRoute: () => rootRouteImport,
 } as any)
-const authenticatedIndexRoute = authenticatedIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => authenticatedRouteRoute,
-} as any)
-const authenticatedPostsIndexRoute = authenticatedPostsIndexRouteImport.update({
-  id: '/posts/',
-  path: '/posts/',
-  getParentRoute: () => authenticatedRouteRoute,
-} as any)
-const unauthenticatedauthLoginRoute =
-  unauthenticatedauthLoginRouteImport.update({
-    id: '/(unauthenticated)/(auth)/login',
-    path: '/login',
-    getParentRoute: () => rootRouteImport,
+const authenticatedIndexLazyRoute = authenticatedIndexLazyRouteImport
+  .update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => authenticatedRouteRoute,
   } as any)
+  .lazy(() =>
+    import('./routes/(authenticated)/index.lazy').then((d) => d.Route),
+  )
+const authenticatedPostsIndexLazyRoute = authenticatedPostsIndexLazyRouteImport
+  .update({
+    id: '/posts/',
+    path: '/posts/',
+    getParentRoute: () => authenticatedRouteRoute,
+  } as any)
+  .lazy(() =>
+    import('./routes/(authenticated)/posts/index.lazy').then((d) => d.Route),
+  )
+const unauthenticatedauthLoginLazyRoute =
+  unauthenticatedauthLoginLazyRouteImport
+    .update({
+      id: '/(unauthenticated)/(auth)/login',
+      path: '/login',
+      getParentRoute: () => rootRouteImport,
+    } as any)
+    .lazy(() =>
+      import('./routes/(unauthenticated)/(auth)/login.lazy').then(
+        (d) => d.Route,
+      ),
+    )
 
 export interface FileRoutesByFullPath {
-  '/': typeof authenticatedIndexRoute
-  '/login': typeof unauthenticatedauthLoginRoute
-  '/posts/': typeof authenticatedPostsIndexRoute
+  '/': typeof authenticatedIndexLazyRoute
+  '/login': typeof unauthenticatedauthLoginLazyRoute
+  '/posts/': typeof authenticatedPostsIndexLazyRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof authenticatedIndexRoute
-  '/login': typeof unauthenticatedauthLoginRoute
-  '/posts': typeof authenticatedPostsIndexRoute
+  '/': typeof authenticatedIndexLazyRoute
+  '/login': typeof unauthenticatedauthLoginLazyRoute
+  '/posts': typeof authenticatedPostsIndexLazyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/(authenticated)': typeof authenticatedRouteRouteWithChildren
-  '/(authenticated)/': typeof authenticatedIndexRoute
-  '/(unauthenticated)/(auth)/login': typeof unauthenticatedauthLoginRoute
-  '/(authenticated)/posts/': typeof authenticatedPostsIndexRoute
+  '/(authenticated)/': typeof authenticatedIndexLazyRoute
+  '/(unauthenticated)/(auth)/login': typeof unauthenticatedauthLoginLazyRoute
+  '/(authenticated)/posts/': typeof authenticatedPostsIndexLazyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -67,7 +88,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   authenticatedRouteRoute: typeof authenticatedRouteRouteWithChildren
-  unauthenticatedauthLoginRoute: typeof unauthenticatedauthLoginRoute
+  unauthenticatedauthLoginLazyRoute: typeof unauthenticatedauthLoginLazyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -83,34 +104,34 @@ declare module '@tanstack/react-router' {
       id: '/(authenticated)/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof authenticatedIndexRouteImport
+      preLoaderRoute: typeof authenticatedIndexLazyRouteImport
       parentRoute: typeof authenticatedRouteRoute
     }
     '/(authenticated)/posts/': {
       id: '/(authenticated)/posts/'
       path: '/posts'
       fullPath: '/posts/'
-      preLoaderRoute: typeof authenticatedPostsIndexRouteImport
+      preLoaderRoute: typeof authenticatedPostsIndexLazyRouteImport
       parentRoute: typeof authenticatedRouteRoute
     }
     '/(unauthenticated)/(auth)/login': {
       id: '/(unauthenticated)/(auth)/login'
       path: '/login'
       fullPath: '/login'
-      preLoaderRoute: typeof unauthenticatedauthLoginRouteImport
+      preLoaderRoute: typeof unauthenticatedauthLoginLazyRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 interface authenticatedRouteRouteChildren {
-  authenticatedIndexRoute: typeof authenticatedIndexRoute
-  authenticatedPostsIndexRoute: typeof authenticatedPostsIndexRoute
+  authenticatedIndexLazyRoute: typeof authenticatedIndexLazyRoute
+  authenticatedPostsIndexLazyRoute: typeof authenticatedPostsIndexLazyRoute
 }
 
 const authenticatedRouteRouteChildren: authenticatedRouteRouteChildren = {
-  authenticatedIndexRoute: authenticatedIndexRoute,
-  authenticatedPostsIndexRoute: authenticatedPostsIndexRoute,
+  authenticatedIndexLazyRoute: authenticatedIndexLazyRoute,
+  authenticatedPostsIndexLazyRoute: authenticatedPostsIndexLazyRoute,
 }
 
 const authenticatedRouteRouteWithChildren =
@@ -118,7 +139,7 @@ const authenticatedRouteRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   authenticatedRouteRoute: authenticatedRouteRouteWithChildren,
-  unauthenticatedauthLoginRoute: unauthenticatedauthLoginRoute,
+  unauthenticatedauthLoginLazyRoute: unauthenticatedauthLoginLazyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
