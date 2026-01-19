@@ -1,12 +1,12 @@
 import './index.css';
 
+import { QueryClient } from '@tanstack/react-query';
 import { createRouter } from '@tanstack/react-router';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
-import { routeTree } from './routeTree.gen';
-import { QueryClient } from '@tanstack/react-query';
 import AppProvider from './components/core/app-provider';
+import { routeTree } from './routeTree.gen';
 
 const APP_MODE = import.meta.env.VITE_APP_MODE;
 

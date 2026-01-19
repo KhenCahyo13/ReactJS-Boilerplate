@@ -9,27 +9,52 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as unauthenticatedauthLoginRouteImport } from './routes/(unauthenticated)/(auth)/login'
 
-export interface FileRoutesByFullPath {}
-export interface FileRoutesByTo {}
+const unauthenticatedauthLoginRoute =
+  unauthenticatedauthLoginRouteImport.update({
+    id: '/(unauthenticated)/(auth)/login',
+    path: '/login',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+
+export interface FileRoutesByFullPath {
+  '/login': typeof unauthenticatedauthLoginRoute
+}
+export interface FileRoutesByTo {
+  '/login': typeof unauthenticatedauthLoginRoute
+}
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/(unauthenticated)/(auth)/login': typeof unauthenticatedauthLoginRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: never
+  fullPaths: '/login'
   fileRoutesByTo: FileRoutesByTo
-  to: never
-  id: '__root__'
+  to: '/login'
+  id: '__root__' | '/(unauthenticated)/(auth)/login'
   fileRoutesById: FileRoutesById
 }
-export interface RootRouteChildren {}
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {}
+export interface RootRouteChildren {
+  unauthenticatedauthLoginRoute: typeof unauthenticatedauthLoginRoute
 }
 
-const rootRouteChildren: RootRouteChildren = {}
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/(unauthenticated)/(auth)/login': {
+      id: '/(unauthenticated)/(auth)/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof unauthenticatedauthLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+  }
+}
+
+const rootRouteChildren: RootRouteChildren = {
+  unauthenticatedauthLoginRoute: unauthenticatedauthLoginRoute,
+}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()

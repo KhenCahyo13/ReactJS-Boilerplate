@@ -3,8 +3,9 @@ import axios, {
     type AxiosInstance,
     type AxiosRequestConfig,
 } from 'axios';
-import type { Token } from '@/types/auth';
+
 import { useAuthStore } from '@/stores/auth-store';
+import type { Token } from '@/types/auth';
 
 const BASE_API_URL = import.meta.env.VITE_API_BASE_URL as string;
 const REFRESH_TOKEN_URL = '/auth/refresh';
