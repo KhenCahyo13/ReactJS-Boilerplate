@@ -5,6 +5,7 @@ import type { FC } from "react";
 
 import type { router } from "@/main";
 import type { LayoutProps } from "@/types/component";
+import { AlertDialogProvider } from "../fallback/alert-dialog";
 
 interface AppProviderProps extends LayoutProps {
     queryClient: QueryClient;
@@ -28,6 +29,7 @@ const AppProvider: FC<AppProviderProps> = ({
             />
         )}
         <RouterProvider router={router} />
+        <AlertDialogProvider />
     </QueryClientProvider>
 );
 

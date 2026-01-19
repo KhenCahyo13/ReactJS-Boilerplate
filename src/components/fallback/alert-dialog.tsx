@@ -146,7 +146,7 @@ function getTitleColorByType(type: AlertType): string {
 }
 
 // Standalone Alert Dialog Container
-export function AlertDialogContainer() {
+export function AlertDialogProvider() {
     const state = useAlertDialogStore();
     const closeDialog = useAlertDialogStore((store) => store.closeDialog);
 
