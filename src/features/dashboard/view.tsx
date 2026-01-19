@@ -4,7 +4,7 @@ import ContentLayout from "@/components/layouts/content-layout";
 
 const DashboardView = () => (
     <ContentLayout title="Dashboard" description="Welcome to the dashboard">
-        <h1 className="text-lg font-semibold">Dashboard View</h1>
+        <p className="text-muted-foreground">Dashboard content will appears here.</p>
     </ContentLayout>
 );
 
