@@ -1,5 +1,6 @@
-import ContentLayout from "@/components/layouts/content-layout";
 import { memo } from "react";
+
+import ContentLayout from "@/components/layouts/content-layout";
 
 const DashboardView = () => (
     <ContentLayout title="Dashboard" description="Welcome to the dashboard">

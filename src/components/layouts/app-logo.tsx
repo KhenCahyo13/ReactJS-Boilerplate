@@ -1,8 +1,8 @@
+import { IconGalaxy } from '@tabler/icons-react';
 import type { FC } from 'react';
 
 import { cn } from '@/lib/utils';
 import type { LayoutProps } from '@/types/component';
-import { IconGalaxy } from '@tabler/icons-react';
 
 interface AppLogoProps extends LayoutProps {
     isOnlyLogo?: boolean;
