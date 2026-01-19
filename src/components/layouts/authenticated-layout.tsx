@@ -1,6 +1,6 @@
-import { Link, Outlet, useMatches } from '@tanstack/react-router';
+import { Link, Outlet, useMatches, useNavigate } from '@tanstack/react-router';
 import type { FC } from 'react';
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 
 import {
     Breadcrumb,
@@ -19,8 +19,11 @@ import type { LayoutProps } from '@/types/component';
 
 import { Separator } from '../ui/separator';
 import AppSidebar from './app-sidebar';
+import { useAuthStore } from '@/stores/auth-store';
 
 const AuthenticatedLayout: FC<LayoutProps> = ({ children }) => {
+    const navigate = useNavigate();
+    const { tokens } = useAuthStore();
     const matches = useMatches();
 
     const breadcrumbs = matches
@@ -46,6 +49,12 @@ const AuthenticatedLayout: FC<LayoutProps> = ({ children }) => {
                 label,
             };
         });
+
+    useEffect(() => {
+        if (!tokens) {
+            navigate({ to: '/login' });
+        }
+    }, [tokens, navigate]);
 
     return (
         <SidebarProvider>
@@ -80,7 +89,7 @@ const AuthenticatedLayout: FC<LayoutProps> = ({ children }) => {
                                             .replace(/\b\w/g, (ch) => ch.toUpperCase()) || 'Home';
 
                                     let displayLabel: string;
-                                    
+
                                     if (isUuid || isNumeric) {
                                         displayLabel = 'Details';
                                     } else if (isCreate) {
