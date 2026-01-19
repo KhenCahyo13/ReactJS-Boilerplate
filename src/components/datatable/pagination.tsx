@@ -6,6 +6,8 @@ import {
 } from '@tabler/icons-react';
 import type { FC } from 'react';
 
+import { getPaginationPages } from '@/lib/pagination';
+import { useDataTableStore } from '@/stores/datatable-store';
 import type { ApiPagination } from '@/types/api';
 
 import { Button } from '../ui/button';
@@ -15,8 +17,6 @@ import {
     PaginationEllipsis,
     PaginationItem,
 } from '../ui/pagination';
-import { useDataTableStore } from '@/stores/datatable-store';
-import { getPaginationPages } from '@/lib/pagination';
 
 export interface DataTablePaginationProps {
     pagination: ApiPagination | undefined;

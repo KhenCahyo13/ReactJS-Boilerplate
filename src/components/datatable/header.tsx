@@ -2,6 +2,8 @@ import { IconFilter, IconPlus } from '@tabler/icons-react';
 import { Link } from '@tanstack/react-router';
 import type { FC, ReactNode } from 'react';
 
+import { useDataTableStore } from '@/stores/datatable-store';
+
 import { Button } from '../ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog';
 import { Input } from '../ui/input';
@@ -13,7 +15,6 @@ import {
     SelectValue,
 } from '../ui/select';
 import { Separator } from '../ui/separator';
-import { useDataTableStore } from '@/stores/datatable-store';
 
 export interface DataTableHeaderProps {
     filtersContent?: ReactNode;
