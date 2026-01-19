@@ -1,6 +1,7 @@
 ## Explanation
 
 This folder will contains your app features, and if you want, you can use Container-Presentational pattern for your codes, so it will separate your codes for view and for the business logic. Below is the example of how you can utilize this folder:
+
 ```
 - features
     - tickets
