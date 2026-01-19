@@ -17,6 +17,7 @@ export default defineConfig([
         'src/components/tanstack-form/**/*.tsx',
         'src/components/blocks/**/*.tsx',
         'src/components/editor/**/*.tsx',
+        'src/stories/**/*.tsx',
     ]),
     {
         files: ['**/*.{ts,tsx}'],
