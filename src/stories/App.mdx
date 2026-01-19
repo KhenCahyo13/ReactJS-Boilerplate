@@ -1,0 +1,115 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="React Boilerplate Storybook" />
+
+# Stories Overview
+
+This page summarizes all stories available in the project, including their purpose and usage patterns. Use it as a map to explore components and the prepared interaction examples.
+
+## DataTable
+
+- **Purpose**: Flexible data table with filtering, pagination, search, and integration with TanStack Table + Zustand.
+- **File**: [src/stories/DataTable.stories.tsx](src/stories/DataTable.stories.tsx)
+- **Variants**:
+	- **Default**: Renders header, body, and pagination with simple data.
+	- **WithFilters**: Shows filters using `Field` + `Select` and `Apply/Reset` actions.
+	- **Loading**: Loading state with skeletons.
+	- **Error**: Error state with fallback action.
+	- **Empty**: Empty state with a fallback message.
+	- **WithAddButton**: Header with an add button.
+
+## TanStack Form Inputs
+
+Input components integrated with `@tanstack/react-form`. Each story uses a `<form>` wrapper and shows a values preview to ease testing.
+
+### TextInput
+
+- **Purpose**: Text input with label, required indicator, and error state.
+- **File**: [src/stories/TfTextInput.stories.tsx](src/stories/TfTextInput.stories.tsx)
+- **Variants**:
+	- **Default**: Standard text input with placeholder.
+	- **Required**: Displays required indicator (`*`).
+	- **Disabled**: Disabled input with preset value.
+	- **Prefilled**: Initial value shown in the input.
+	- **Password**: `password` type with masked placeholder.
+
+### SelectInput
+
+- **Purpose**: Controlled select with options and per-option disabled state.
+- **File**: [src/stories/TfSelectInput.stories.tsx](src/stories/TfSelectInput.stories.tsx)
+- **Variants**:
+	- **Default**: Select with placeholder and basic options.
+	- **WithDisabledOption**: One option disabled.
+	- **Disabled**: Disabled select with initial value.
+	- **Preselected**: Initial value already selected.
+
+### CalendarInput
+
+- **Purpose**: Calendar-based date input. Value stored as an ISO string.
+- **File**: [src/stories/TfCalendarInput.stories.tsx](src/stories/TfCalendarInput.stories.tsx)
+- **Variants**:
+	- **Default**: Pick a date and see localized display.
+	- **WithDefaultValue**: Initial date prefilled.
+	- **Disabled**: Disabled date input.
+
+### DateTimeInput
+
+- **Purpose**: Date + time input with hour, minute, and AM/PM pickers.
+- **File**: [src/stories/TfDateTimeInput.stories.tsx](src/stories/TfDateTimeInput.stories.tsx)
+- **Variants**:
+	- **Default**: Pick full date and time.
+	- **WithDefaultValue**: Initial value using current time.
+	- **Disabled**: Disabled component with placeholder.
+
+## Fallback Components
+
+Components for showing fallback states like empty, error, loader, and confirmation/message dialog.
+
+### FallbackAction
+
+- **Purpose**: Illustration + action button (e.g., retry).
+- **File**: [src/stories/FallbackAction.stories.tsx](src/stories/FallbackAction.stories.tsx)
+- **Variants**:
+	- **Default**: Retry action with a simple counter.
+	- **CustomImage**: Use a custom illustration.
+	- **WithoutImage**: Action button only.
+
+### AlertDialog
+
+- **Purpose**: Global dialog provider for messages and confirmations, using a Zustand store.
+- **File**: [src/stories/AlertDialog.stories.tsx](src/stories/AlertDialog.stories.tsx)
+- **Variants**:
+	- **Playground**: Trigger buttons for `showInfo`, `showSuccess`, `showWarning`, `showError`, and `showConfirmation`, plus rendering `AlertDialogProvider`.
+
+### ImageText
+
+- **Purpose**: Illustration + text for empty/error states.
+- **File**: [src/stories/FallbackImageText.stories.tsx](src/stories/FallbackImageText.stories.tsx)
+- **Variants**:
+	- **Default**: Show image and label.
+	- **WithoutImage**: Text only.
+	- **CustomSize**: Adjust illustration size.
+
+### Loader
+
+- **Purpose**: Loading indicator with a label.
+- **File**: [src/stories/FallbackLoader.stories.tsx](src/stories/FallbackLoader.stories.tsx)
+- **Variants**:
+	- **Default**: Generic label.
+	- **CustomLabel**: Custom label for specific contexts.
+
+## Run Storybook
+
+- **Start**: Use the command below to develop and view stories.
+
+```bash
+pnpm storybook
+```
+
+## Testing Tips
+
+- **Form Value Preview**: In TanStack Form stories, form values are rendered below the inputs to ease assertions in manual or automated tests.
+- **Accessibility**: The `<form>` wrapper provides better semantics and supports submit interactions if needed.
+- **Controls**: Use Storybook Controls/Toolbar to tweak props live when available.
+
+If you need additional examples or more complex integrations (e.g., `zod` validation or global state handling), let me know and I can add new stories.

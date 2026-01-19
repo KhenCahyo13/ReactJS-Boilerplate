@@ -15,11 +15,11 @@ import {
     SidebarProvider,
     SidebarTrigger,
 } from '@/components/ui/sidebar';
+import { useAuthStore } from '@/stores/auth-store';
 import type { LayoutProps } from '@/types/component';
 
 import { Separator } from '../ui/separator';
 import AppSidebar from './app-sidebar';
-import { useAuthStore } from '@/stores/auth-store';
 
 const AuthenticatedLayout: FC<LayoutProps> = ({ children }) => {
     const navigate = useNavigate();
