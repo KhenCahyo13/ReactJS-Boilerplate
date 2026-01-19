@@ -1,10 +1,10 @@
 import { type FC, memo } from 'react';
 
+import { TfSubmitButton } from '@/components/tanstack-form/button';
+import { TfTextInput } from '@/components/tanstack-form/text-input';
 import { FieldGroup } from '@/components/ui/field';
 
 import type { LoginFormProps } from '../types';
-import { TfTextInput } from '@/components/tanstack-form/text-input';
-import { TfSubmitButton } from '@/components/tanstack-form/button';
 
 const LoginForm: FC<LoginFormProps> = ({ form, isLoginLoading }) => (
     <form

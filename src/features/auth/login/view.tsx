@@ -1,8 +1,8 @@
+import { IconGalaxy } from '@tabler/icons-react';
 import { type FC, memo } from 'react';
 
 import LoginForm from './components/form';
 import type { LoginViewProps } from './types';
-import { IconGalaxy } from '@tabler/icons-react';
 
 const LoginView: FC<LoginViewProps> = ({ form, isLoginLoading }) => (
     <div className="grid min-h-svh lg:grid-cols-2">

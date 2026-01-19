@@ -1,13 +1,14 @@
 import { useForm } from '@tanstack/react-form';
-
-import { loginFormDefaultValues, loginFormSchema } from './schema';
-import LoginView from './view';
-import { useNavigate } from '@tanstack/react-router';
-import { useAuthStore } from '@/stores/auth-store';
 import { useMutation } from '@tanstack/react-query';
-import type { LoginFormValues } from './types';
+import { useNavigate } from '@tanstack/react-router';
+
 import { login } from '@/api/auth';
 import { useAlertDialogStore } from '@/stores/alert-dialog-store';
+import { useAuthStore } from '@/stores/auth-store';
+
+import { loginFormDefaultValues, loginFormSchema } from './schema';
+import type { LoginFormValues } from './types';
+import LoginView from './view';
 
 const Login = () => {
     const navigate = useNavigate();
