@@ -31,15 +31,23 @@ export const Default: Story = {
             },
         });
 
+        const values = form.state.values;
+
         return (
-            <div className="max-w-sm">
+            <form
+                onSubmit={(e) => e.preventDefault()}
+                className="max-w-sm space-y-2"
+            >
                 <TfCalendarInput
                     form={form}
                     name={'date'}
                     label="Date"
                     placeholder="Select date"
                 />
-            </div>
+                <div className="text-xs text-muted-foreground">
+                    Values: {JSON.stringify(values)}
+                </div>
+            </form>
         );
     },
 };
@@ -53,10 +61,18 @@ export const WithDefaultValue: Story = {
             },
         });
 
+        const values = form.state.values;
+
         return (
-            <div className="max-w-sm">
+            <form
+                onSubmit={(e) => e.preventDefault()}
+                className="max-w-sm space-y-2"
+            >
                 <TfCalendarInput form={form} name={'date'} label="Date" />
-            </div>
+                <div className="text-xs text-muted-foreground">
+                    Values: {JSON.stringify(values)}
+                </div>
+            </form>
         );
     },
 };
@@ -69,8 +85,13 @@ export const Disabled: Story = {
             },
         });
 
+        const values = form.state.values;
+
         return (
-            <div className="max-w-sm">
+            <form
+                onSubmit={(e) => e.preventDefault()}
+                className="max-w-sm space-y-2"
+            >
                 <TfCalendarInput
                     form={form}
                     name={'date'}
@@ -78,7 +99,10 @@ export const Disabled: Story = {
                     placeholder="Select date"
                     disabled
                 />
-            </div>
+                <div className="text-xs text-muted-foreground">
+                    Values: {JSON.stringify(values)}
+                </div>
+            </form>
         );
     },
 };

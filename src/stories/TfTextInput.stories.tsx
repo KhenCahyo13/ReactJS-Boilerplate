@@ -31,15 +31,23 @@ export const Default: Story = {
             },
         });
 
+        const values = form.state.values;
+
         return (
-            <div className="max-w-sm">
+            <form
+                onSubmit={(e) => e.preventDefault()}
+                className="max-w-sm space-y-2"
+            >
                 <TfTextInput
                     form={form}
                     name={'name'}
                     label="Name"
                     placeholder="Enter your name"
                 />
-            </div>
+                <div className="text-xs text-muted-foreground">
+                    Values: {JSON.stringify(values)}
+                </div>
+            </form>
         );
     },
 };
@@ -52,8 +60,13 @@ export const Required: Story = {
             },
         });
 
+        const values = form.state.values;
+
         return (
-            <div className="max-w-sm">
+            <form
+                onSubmit={(e) => e.preventDefault()}
+                className="max-w-sm space-y-2"
+            >
                 <TfTextInput
                     form={form}
                     name={'email'}
@@ -61,7 +74,10 @@ export const Required: Story = {
                     placeholder="your@email.com"
                     required
                 />
-            </div>
+                <div className="text-xs text-muted-foreground">
+                    Values: {JSON.stringify(values)}
+                </div>
+            </form>
         );
     },
 };
@@ -74,15 +90,23 @@ export const Disabled: Story = {
             },
         });
 
+        const values = form.state.values;
+
         return (
-            <div className="max-w-sm">
+            <form
+                onSubmit={(e) => e.preventDefault()}
+                className="max-w-sm space-y-2"
+            >
                 <TfTextInput
                     form={form}
                     name={'username'}
                     label="Username"
                     disabled
                 />
-            </div>
+                <div className="text-xs text-muted-foreground">
+                    Values: {JSON.stringify(values)}
+                </div>
+            </form>
         );
     },
 };
@@ -95,10 +119,18 @@ export const Prefilled: Story = {
             },
         });
 
+        const values = form.state.values;
+
         return (
-            <div className="max-w-sm">
+            <form
+                onSubmit={(e) => e.preventDefault()}
+                className="max-w-sm space-y-2"
+            >
                 <TfTextInput form={form} name={'fullName'} label="Full Name" />
-            </div>
+                <div className="text-xs text-muted-foreground">
+                    Values: {JSON.stringify(values)}
+                </div>
+            </form>
         );
     },
 };
@@ -111,8 +143,13 @@ export const Password: Story = {
             },
         });
 
+        const values = form.state.values;
+
         return (
-            <div className="max-w-sm">
+            <form
+                onSubmit={(e) => e.preventDefault()}
+                className="max-w-sm space-y-2"
+            >
                 <TfTextInput
                     form={form}
                     name={'password'}
@@ -120,7 +157,10 @@ export const Password: Story = {
                     label="Password"
                     placeholder="••••••••"
                 />
-            </div>
+                <div className="text-xs text-muted-foreground">
+                    Values: {JSON.stringify(values)}
+                </div>
+            </form>
         );
     },
 };
